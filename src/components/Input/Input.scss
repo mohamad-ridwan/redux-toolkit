@@ -1,62 +1,31 @@
-.input{
+label{
     display: flex;
     flex-direction: column;
-    gap: 5px;
 
     span{
-        color:gray;
         font-size: 14px;
+        margin-bottom: 5px;
     }
 
-    .col-input{
-        display: flex;
-        align-items: center;
-
-        input{
+    input{
+        margin: 2px 0 12px 0;
+        font-size: 14px;
+        color: #222;
+        padding: 7px 12px;
+        outline: none;
+        border: 2px solid #aaa;
+        border-radius: 3px;
+        transition: all 0.2s ease-in-out;
+        &::placeholder{
+            color: #aaa;
             font-size: 13px;
-            color: #333;
-            padding: 7px 12px;
-            border: 2px solid lightgray;
-            border-radius: 3px;
-            outline: none;
-            width: 100%;
-            overflow: hidden;
+        }
+        &:focus{
+            border: 2px solid darkblue;
+            color: darkblue;
             &::placeholder{
-                color: #aaa;
+                color: darkblue;
             }
-        }
-        .radio[type='radio']:after {
-            width: 10px;
-            height: 10px;
-            border-radius: 100%;
-            left: -1px;
-            position: relative;
-            background-color: #d1d3d1;
-            content: '';
-            display: inline-block;
-            visibility: visible;
-            border: 2px solid white;
-            transition: 0.2s ease-in-out;
-        }
-        .radio-active[type='radio']:after {
-            width: 10px;
-            height: 10px;
-            border-radius: 100%;
-            left: -1px;
-            position: relative;
-            background-color: darkblue;
-            content: '';
-            display: inline-block;
-            visibility: visible;
-            border: 2px solid white;
-        }
-
-        label{
-            display: none;
-            font-size: 13px;
-            margin-left: 10px;
-            cursor: pointer;
-            color: gray;
         }
     }
 }

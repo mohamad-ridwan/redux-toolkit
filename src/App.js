@@ -1,15 +1,16 @@
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
-import Navbar from './components/Navbar/Navbar';
-import Dashboard from './pages/Dashboard/Dashboard';
-import EditProfile from './pages/EditProfile/EditProfile';
-import { profileStore } from './reduxToolkit/profileStore';
-import { Provider } from 'react-redux'
 import './app.scss'
+import Navbar from './components/Navbar/Navbar'
+import Home from './pages/Home/Home'
+import IsLoggedIn from './pages/IsLoggedIn/IsLoggedIn'
+import Login from './pages/Login/Login'
+import User from './pages/User/User'
 
-function Layout() {
+const Layout = () => {
   return (
     <div className='app'>
       <Navbar />
+      <IsLoggedIn/>
       <Outlet />
     </div>
   )
@@ -22,11 +23,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Dashboard />
+        element: <Home />
       },
       {
-        path: '/edit-profile',
-        element: <EditProfile />
+        path: '/user',
+        element: <User />
+      },
+      {
+        path: '/login',
+        element: <Login />
       }
     ]
   }
@@ -35,9 +40,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <div className="App">
-      <Provider store={profileStore}>
-        <RouterProvider router={router}></RouterProvider>
-      </Provider>
+      <RouterProvider router={router}></RouterProvider>
     </div>
   );
 }

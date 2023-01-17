@@ -1,26 +1,40 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import {useSelector} from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { tokenAction } from '../../redux/tokenReducer'
+import { userAction } from '../../redux/userReducer'
 import './Navbar.scss'
 
 const Navbar = () => {
-  const users = useSelector((state)=>state.profile.users)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const userToken = useSelector((state)=> state.token.userToken)
+
+  function handleLogout(){
+    if(userToken !== null){
+      dispatch(userAction({}))
+      dispatch(tokenAction(null))
+    }
+    return navigate('/login')
+  }
 
   return (
-    <div className="wrapp-navbar">
+    <nav className="wrapp-navbar">
       <div className="navbar">
-        <div className="left">
-          <h1>
-            <Link className='link' to="/">{users && users.nama}</Link>
-          </h1>
-        </div>
-        <div className="right">
-          <button>
-            <Link className='link' to="edit-profile">Edit your profile</Link>
-          </button>
-        </div>
+        <Link className='link' to="/">
+          <h1>Our Developer React JS</h1>
+        </Link>
+
+        <ul className="menu-page">
+          <li>
+            <Link className='link' to="/user">User</Link>
+          </li>
+          <li>
+            <Link className='link' onClick={handleLogout}>{userToken !== null ? 'Logout' : 'Login'}</Link>
+          </li>
+        </ul>
       </div>
-    </div>
+    </nav>
   )
 }
 
